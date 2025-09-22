@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Traço de Concreto - Método ABCP</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="formulario">
+            <h2>Calculadora de Traço de Concreto - Método ABCP</h2>
+            <form id="calcForm">
+                <!-- Campo FCK -->
+                <label>FCK (Resistência Característica do Concreto):
+                    <select id="fck">
+                        <option value="15">15 MPa</option>
+                        <option value="20">20 MPa</option>
+                        <option value="25">25 MPa</option>
+                        <option value="30">30 MPa</option>
+                        <option value="35">35 MPa</option>
+                        <option value="40">40 MPa</option>
+                    </select>
+                </label>
+                <div class="observacao">
+                    <strong>O que é FCK?</strong> É a resistência característica do concreto à compressão, medida em MPa (MegaPascal).<br>
+                    <strong>Sugestões:</strong><br>
+                    - FCK 15 MPa: Pisos e contrapisos.<br>
+                    - FCK 20 MPa: Estruturas leves.<br>
+                    - FCK 25 MPa: Vigas e lajes.<br>
+                    - FCK 30 MPa: Estruturas de concreto armado.<br>
+                    - FCK 35 MPa: Estruturas de alta resistência.<br>
+                    - FCK 40 MPa: Estruturas especiais.
+                </div>
+
+                <!-- Campo Slump -->
+                <label>Slump Estimado (Abatimento do Concreto):
+                    <select id="slump">
+                        <option value="40-60">40 a 60 mm</option>
+                        <option value="60-80">60 a 80 mm</option>
+                        <option value="80-100">80 a 100 mm</option>
+                        <option value="120-150">120 a 150 mm</option>
+                    </select>
+                </label>
+                <div class="observacao">
+                    <strong>O que é Slump?</strong> É a medida da consistência do concreto fresco, indicando sua trabalhabilidade.<br>
+                    <strong>Sugestões:</strong><br>
+                    - 40 a 60 mm: Concreto seco, ideal para pisos.<br>
+                    - 60 a 80 mm: Concreto plástico, para estruturas convencionais.<br>
+                    - 80 a 100 mm: Concreto fluido, para peças com maior adensamento.<br>
+                    - 120 a 150 mm: Concreto muito fluido, para peças com alta densidade de armadura.
+                </div>
+
+                <!-- Campo Tipo de Brita -->
+                <label>Tipo de Brita:
+                    <select id="brita">
+                        <option value="0">0 (Brita 0 - Pedrisco)</option>
+                        <option value="1">1 (Brita 1 - 19 mm)</option>
+                        <option value="2" selected>2 (Brita 2 - 25 mm)</option>
+                    </select>
+                </label>
+                <div class="observacao">
+                    <strong>O que é Brita?</strong> É o agregado graúdo usado no concreto, responsável pela resistência mecânica.<br>
+                    <strong>Sugestões:</strong><br>
+                    - Brita 0 (Pedrisco): Para concretos mais finos e acabamentos.<br>
+                    - Brita 1 (19 mm): Para estruturas convencionais.<br>
+                    - Brita 2 (25 mm): Para estruturas de maior resistência.
+                </div>
+
+                <!-- Campo Tipo de Cimento -->
+                <label>Tipo de Cimento:
+                    <select id="cimento">
+                        <option value="1">1 (CP I - Cimento Portland Comum)</option>
+                        <option value="2" selected>2 (CP II - Cimento Portland Composto)</option>
+                        <option value="3">3 (CP III - Cimento Portland de Alto-Forno)</option>
+                        <option value="4">4 (CP IV - Cimento Portland Pozolânico)</option>
+                    </select>
+                </label>
+                <div class="observacao">
+                    <strong>Tipos de Cimento:</strong><br>
+                    - CP I: Uso geral, sem adições.<br>
+                    - CP II: Com adições de pozolana ou filler, ideal para obras correntes.<br>
+                    - CP III: Com adição de escória, para obras que exigem maior durabilidade.<br>
+                    - CP IV: Com adição de pozolana, para obras expostas a ambientes agressivos.
+                </div>
+
+                <!-- Campo Tipo de Areia -->
+                <label>Tipo de Areia:
+                    <select id="areia">
+                        <option value="1" selected>1 (Areia Fina)</option>
+                        <option value="2">2 (Areia Média)</option>
+                        <option value="3">3 (Areia Grossa)</option>
+                    </select>
+                </label>
+                <div class="observacao">
+                    <strong>Tipos de Areia:</strong><br>
+                    - Areia Fina: Para concretos mais fluidos e acabamentos.<br>
+                    - Areia Média: Para uso geral em estruturas.<br>
+                    - Areia Grossa: Para concretos de alta resistência.
+                </div>
+
+                <!-- Campo Umidade da Areia -->
+                <label>Umidade Relativa da Areia (%): <input type="number" id="umidadeAreia" value="5"></label>
+                <div class="observacao">
+                    <strong>O que é Umidade da Areia?</strong> É a quantidade de água presente na areia, que influencia no volume real do material.<br>
+                    <strong>Sugestão:</strong> A umidade típica da areia varia entre 3% e 7%.
+                </div>
+
+                <!-- Campo Umidade da Brita -->
+                <label>Umidade Relativa da Brita (%): <input type="number" id="umidadeBrita" value="1"></label>
+                <div class="observacao">
+                    <strong>O que é Umidade da Brita?</strong> É a quantidade de água presente na brita, que influencia no volume real do material.<br>
+                    <strong>Sugestão:</strong> A umidade típica da brita varia entre 0,5% e 2%.
+                </div>
+
+                <!-- Botão de Calcular -->
+                <button type="button" onclick="calcularDosagem()">Calcular</button>
+            </form>
+            <div class="resultado" id="resultado"></div>
+        </div>
+        <div class="memorial" id="memorial"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
